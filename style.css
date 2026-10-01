@@ -1,0 +1,21 @@
+:root{--cream:#f7f0e6;--ink:#171411;--line:#cbbca8;--panel:rgba(249,244,236,.97)}
+*{box-sizing:border-box}html,body{margin:0;background:#f8f3ec;color:var(--ink);font-family:Georgia,'Times New Roman',serif}a{color:inherit;text-decoration:none}
+.page{position:relative;max-width:1365px;margin:0 auto;background:#fff;box-shadow:0 0 40px rgba(49,36,22,.08)}
+.mockup{display:block;width:100%;height:auto}
+.mobile-menu-btn{position:fixed;right:16px;top:16px;z-index:50;width:48px;height:48px;border:1px solid rgba(0,0,0,.18);border-radius:50%;background:rgba(250,246,239,.92);font-size:22px;display:flex;align-items:center;justify-content:center;backdrop-filter:blur(7px)}
+.drawer{position:fixed;inset:0 auto 0 0;width:min(82vw,340px);background:var(--panel);z-index:60;transform:translateX(-105%);transition:.25s;padding:28px 28px 38px;box-shadow:15px 0 40px rgba(0,0,0,.12);overflow:auto}
+.drawer.open{transform:translateX(0)}.shade{position:fixed;inset:0;background:rgba(0,0,0,.28);z-index:55;display:none}.shade.open{display:block}
+.drawer img{width:140px;display:block;margin:0 auto 28px;border-radius:4px}.drawer nav{display:grid;gap:0}.drawer nav a{padding:14px 4px;border-bottom:1px solid #ddd0c1;letter-spacing:.12em;font:14px Arial,sans-serif}.drawer .small{margin-top:28px;display:grid;gap:10px;font:13px Arial,sans-serif;letter-spacing:.05em}
+.hotspot{position:absolute;display:block;z-index:10;background:transparent}.hotspot:hover{outline:1px solid rgba(255,255,255,.45)}
+/* home sidebar hotspots */
+.home .nav-new{left:1%;top:8.6%;width:12%;height:2.5%}.home .nav-abiti{left:1%;top:11.5%;width:12%;height:2.5%}.home .nav-top{left:1%;top:14.8%;width:12%;height:2.5%}.home .nav-pantaloni{left:1%;top:18%;width:12%;height:2.5%}.home .nav-gonne{left:1%;top:21.5%;width:12%;height:2.5%}.home .nav-giacche{left:1%;top:24.7%;width:12%;height:2.5%}.home .nav-coordinati{left:1%;top:27.8%;width:12%;height:2.8%}.home .hero-btn{left:23%;top:30.8%;width:30%;height:4%}.home .new-btn{left:8%;top:61.7%;width:25%;height:3.5%}.home .about-btn{left:59%;top:78.8%;width:18%;height:3%}.home .footer-about{left:18%;top:96%;width:8%;height:2%}.home .footer-contact{left:28%;top:96%;width:8%;height:2%}.home .footer-faq{left:36%;top:96%;width:6%;height:2%}.home .footer-ship{left:43%;top:96%;width:12%;height:2%}.home .footer-legal{left:57%;top:96%;width:18%;height:2%}
+/* overlay replacement Accessori -> Coordinati */
+.replace-coord{position:absolute;z-index:15;background:#f6efe5;color:#1c1814;text-transform:uppercase;letter-spacing:.08em;font-family:Georgia,'Times New Roman',serif;text-align:left;display:flex;align-items:center;justify-content:flex-start;white-space:nowrap}
+.home .replace-coord{left:2.5%;top:28.2%;width:10.5%;height:2%;font-size:clamp(7px,1.05vw,16px)}
+.category-overview .replace-coord{left:18%;top:85.2%;width:21%;height:4.2%;font-size:clamp(13px,2.5vw,36px);background:#d8b18b}
+/* generic top nav overlay for screenshot pages */
+.overlay-nav{position:fixed;left:18px;bottom:18px;z-index:40;display:flex;gap:7px;flex-wrap:wrap;max-width:calc(100vw - 100px)}
+.overlay-nav a{font:11px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;background:rgba(249,244,236,.92);border:1px solid #d7cabb;padding:8px 10px;border-radius:999px;backdrop-filter:blur(7px)}
+.notice{max-width:1365px;margin:0 auto;padding:9px 16px;text-align:center;font:12px Arial,sans-serif;background:#191611;color:#fff;letter-spacing:.05em}
+@media(min-width:900px){.mobile-menu-btn{display:none}.overlay-nav{display:none}}
+@media(max-width:899px){.page{box-shadow:none}.notice{font-size:11px}.mockup{width:100%;}.hotspot{display:none}.replace-coord{display:none}}

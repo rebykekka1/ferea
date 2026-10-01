@@ -1,0 +1,8 @@
+FÉRÈA – versione grafica approvata
+
+Questa cartella è pronta per GitHub Pages.
+Carica TUTTI i file e la cartella assets nella root del repository ferea, sostituendo la versione precedente.
+Il file principale è index.html.
+Il link resta: https://rebykekka1.github.io/ferea/
+
+Nota: è un prototipo visuale; prodotti, prezzi e dati sono di esempio.
