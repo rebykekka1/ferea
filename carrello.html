@@ -1,1 +1,131 @@
-<!doctype html><html lang='it'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Carrello — FÉRÈA</title><style>*{box-sizing:border-box}body{margin:0;background:#fffaf4;color:#2b241f;font-family:Arial,sans-serif}.wrap{max-width:1000px;margin:auto;padding:45px 25px}.logo{width:110px;height:110px;object-fit:cover}h1{font:42px Georgia,serif;letter-spacing:3px;border-bottom:1px solid #d8cabc;padding-bottom:20px}.item{display:grid;grid-template-columns:130px 1fr auto;gap:25px;padding:25px 0;border-bottom:1px solid #ddd0c2}.pic{height:170px;background:url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80') center/cover}.qty button{padding:7px 11px;background:none;border:1px solid #aaa}.total{text-align:right;font-size:20px;margin:30px 0}.cta{display:block;margin-left:auto;width:310px;text-align:center;padding:17px;background:#211b18;color:#fff;text-decoration:none;letter-spacing:2px}.secondary{display:block;text-align:right;margin-top:16px;color:inherit}.empty{text-align:center;padding:70px 0}@media(max-width:600px){.item{grid-template-columns:90px 1fr}.item>div:last-child{grid-column:2}.cta{width:100%}}</style></head><body><div class='wrap'><a href='index.html'><img class='logo' src='logo.jpeg'></a><h1>IL TUO CARRELLO</h1><div id='cart'></div></div><script>function draw(){let c=JSON.parse(localStorage.getItem('fereaCart')||'null'),el=document.getElementById('cart');if(!c){el.innerHTML='<div class="empty"><h2>IL TUO CARRELLO È VUOTO</h2><p>La tua prossima scelta FÉRÈA ti aspetta.</p><a class="cta" style="margin:30px auto" href="abiti.html">SCOPRI LA COLLEZIONE</a></div>';return}el.innerHTML=`<div class="item"><div class="pic"></div><div><h2>${c.name}</h2><p>Colore: ${c.color}<br>Taglia: ${c.size}</p><div class="qty"><button onclick="q(-1)">−</button> &nbsp;${c.qty}&nbsp; <button onclick="q(1)">+</button></div><p><a href="#" onclick="del()">Rimuovi</a></p></div><div>€ ${(c.price*c.qty).toFixed(2).replace('.',',')}</div></div><div class="total">TOTALE &nbsp; <b>€ ${(c.price*c.qty).toFixed(2).replace('.',',')}</b></div><a class="cta" href="checkout.html">VAI ALLA CASSA</a><a class="secondary" href="abiti.html">CONTINUA LO SHOPPING</a>`}function q(n){let c=JSON.parse(localStorage.getItem('fereaCart'));c.qty+=n;if(c.qty<1)return del();localStorage.setItem('fereaCart',JSON.stringify(c));draw()}function del(){localStorage.removeItem('fereaCart');draw()}draw();</script></body></html>
+<!doctype html><html lang='it'><head><meta charset='utf-8'><meta name='viewport' content='width=device-width,initial-scale=1'><title>Carrello — FÉRÈA</title><style>*{box-sizing:border-box}body{margin:0;background:#fffaf4;color:#2b241f;font-family:Arial,sans-serif}.wrap{max-width:1000px;margin:auto;padding:45px 25px}.logo{width:110px;height:110px;object-fit:cover}h1{font:42px Georgia,serif;letter-spacing:3px;border-bottom:1px solid #d8cabc;padding-bottom:20px}.item{display:grid;grid-template-columns:130px 1fr auto;gap:25px;padding:25px 0;border-bottom:1px solid #ddd0c2}.pic{height:170px;background:url('https://images.unsplash.com/photo-1595777457583-95e059d581b8?auto=format&fit=crop&w=500&q=80') center/cover}.qty button{padding:7px 11px;background:none;border:1px solid #aaa}.total{text-align:right;font-size:20px;margin:30px 0}.cta{display:block;margin-left:auto;width:310px;text-align:center;padding:17px;background:#211b18;color:#fff;text-decoration:none;letter-spacing:2px}.secondary{display:block;text-align:right;margin-top:16px;color:inherit}.empty{text-align:center;padding:70px 0}@media(max-width:600px){.item{grid-template-columns:90px 1fr}.item>div:last-child{grid-column:2}.cta{width:100%}}</style><style id="ferea-mobile-fullpage-menu">
+/* Mobile only: full-width shop layout with icon menu. Desktop remains unchanged. */
+.ferea-mobile-header,.ferea-mobile-drawer,.ferea-mobile-overlay{display:none}
+@media (max-width:800px){
+  html{-webkit-text-size-adjust:100%;text-size-adjust:100%}
+  body{overflow-x:hidden!important}
+  .ferea-mobile-header{display:grid!important;grid-template-columns:1fr auto 1fr;align-items:center;height:82px;padding:0 14px;background:#fffaf4;border-bottom:1px solid rgba(44,36,31,.12);position:sticky;top:0;z-index:20000}
+  .ferea-mobile-left,.ferea-mobile-right{display:flex;align-items:center;gap:8px}
+  .ferea-mobile-right{justify-content:flex-end}
+  .ferea-icon-btn{width:40px;height:40px;border:0;background:transparent;color:#2c241f;display:inline-flex;align-items:center;justify-content:center;padding:0;cursor:pointer;text-decoration:none}
+  .ferea-icon-btn svg{width:25px;height:25px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .ferea-mobile-logo-link{display:block;line-height:0}
+  .ferea-mobile-logo{width:68px;height:68px;object-fit:cover;display:block}
+  .ferea-mobile-overlay{display:block!important;position:fixed;inset:0;background:rgba(30,24,20,.35);opacity:0;pointer-events:none;transition:opacity .25s ease;z-index:20010}
+  .ferea-mobile-drawer{display:flex!important;position:fixed;left:0;top:0;bottom:0;width:min(82vw,320px);background:#f4eadc;z-index:20020;transform:translateX(-105%);transition:transform .28s ease;flex-direction:column;padding:22px 24px 28px;box-shadow:12px 0 35px rgba(0,0,0,.12)}
+  body.ferea-menu-open .ferea-mobile-drawer{transform:translateX(0)}
+  body.ferea-menu-open .ferea-mobile-overlay{opacity:1;pointer-events:auto}
+  body.ferea-menu-open{overflow:hidden!important}
+  .ferea-drawer-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}
+  .ferea-drawer-logo{width:88px;height:88px;object-fit:cover}
+  .ferea-drawer-close{border:0;background:transparent;font-size:34px;line-height:1;color:#2c241f;cursor:pointer;padding:8px}
+  .ferea-drawer-nav{display:flex;flex-direction:column;gap:0;border-top:1px solid rgba(44,36,31,.14)}
+  .ferea-drawer-nav a{display:block!important;color:#2c241f!important;text-decoration:none!important;font-size:13px!important;letter-spacing:2px!important;padding:17px 2px!important;margin:0!important;border-bottom:1px solid rgba(44,36,31,.14);text-align:left!important}
+  .ferea-drawer-bottom{margin-top:auto;padding-top:24px;font-size:11px;letter-spacing:1.4px;line-height:2}
+
+  /* Hide desktop sidebar/header behavior and let content use the whole phone width. */
+  .side{display:none!important}
+  .main{margin-left:0!important;margin-right:0!important;width:100%!important;max-width:none!important;min-width:0!important;overflow-x:hidden!important}
+  .topbar{display:none!important}
+
+  /* Home hero and general sections */
+  .hero{min-height:calc(100svh - 82px)!important;width:100%!important;padding:36px 24px!important;background-size:cover!important;background-position:center center!important}
+  .hero h1{font-size:clamp(46px,15vw,66px)!important;line-height:.95!important;letter-spacing:4px!important;white-space:normal!important}
+  .hero p{font-size:18px!important;line-height:1.45!important;max-width:90%!important}
+  .btn{padding:14px 18px!important;font-size:10.5px!important;letter-spacing:1.6px!important;max-width:100%!important;text-align:center!important}
+  .section{grid-template-columns:1fr!important;gap:28px!important;padding:54px 24px!important;width:100%!important}
+  .section h2{font-size:36px!important;line-height:1.08!important;letter-spacing:1.4px!important}
+  .section p{font-size:14px!important;line-height:1.7!important}
+  .placeholder{height:260px!important;font-size:22px!important}
+  .newsletter{padding:54px 24px!important}
+  .newsletter h2{font-size:30px!important;line-height:1.15!important;letter-spacing:1.5px!important}
+  .newsletter input,.newsletter button{width:100%!important;max-width:100%!important}
+  .newsletter input{margin-bottom:9px!important}
+  .footer{padding:30px 22px!important;font-size:10px!important;line-height:1.9!important}
+
+  /* Collection pages: two-column mobile shop grid. */
+  .head{padding:36px 20px 28px!important}
+  .head h1{font-size:38px!important;line-height:1!important;letter-spacing:2px!important}
+  .head p{font-size:13px!important;line-height:1.5!important}
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:22px 12px!important;padding:24px 12px 50px!important}
+  .pic{height:245px!important;min-height:0!important;font-size:17px!important;padding:8px!important}
+  .card h3{font-size:16px!important;margin:10px 0 4px!important}
+  .meta{font-size:10.5px!important;line-height:1.55!important}
+
+  /* Editorial/info pages */
+  .content{padding:38px 22px!important;max-width:100%!important}
+  .content h2{font-size:30px!important;line-height:1.15!important}
+  .content p,.content li{font-size:14px!important;line-height:1.7!important}
+  .ship-visual{padding:18px 12px 8px!important}
+  .ship-visual img{width:100%!important;height:auto!important;max-width:none!important}
+
+  /* Product page */
+  .main>.product,.product{grid-template-columns:1fr!important;gap:24px!important;padding:22px 18px 42px!important}
+  .photo{height:62svh!important;min-height:430px!important;background-position:center!important}
+  .info h1,.product h1{font-size:34px!important;line-height:1.05!important}
+  .cartlink{float:none!important;display:inline-block!important;margin-bottom:12px!important}
+  .add{width:100%!important}
+
+  /* Standalone cart/checkout/confirmation pages */
+  .wrap{width:100%!important;max-width:100%!important;padding:28px 18px!important;margin:0!important}
+  .wrap>a:first-child>.logo,.wrap>.logo{display:none!important}
+  .wrap h1,h1{max-width:100%}
+  .wrap h1{font-size:34px!important;line-height:1.1!important;letter-spacing:1.5px!important}
+  .item{grid-template-columns:90px minmax(0,1fr)!important;gap:14px!important}
+  .item>div:last-child{grid-column:2!important}
+  .cta{width:100%!important}
+  .secondary{text-align:center!important}
+  .two{grid-template-columns:1fr!important}
+  .summary{padding:20px!important}
+}
+@media(max-width:390px){
+  .ferea-mobile-header{height:76px;padding:0 10px}
+  .ferea-mobile-logo{width:62px;height:62px}
+  .ferea-icon-btn{width:36px;height:36px}
+  .ferea-icon-btn svg{width:23px;height:23px}
+  .hero{min-height:calc(100svh - 76px)!important;padding:30px 20px!important}
+  .hero h1{font-size:44px!important}
+  .grid{gap:18px 10px!important;padding-left:10px!important;padding-right:10px!important}
+  .pic{height:220px!important}
+}
+</style>
+</head><body>
+<header class="ferea-mobile-header" aria-label="Navigazione mobile">
+  <div class="ferea-mobile-left">
+    <button class="ferea-icon-btn ferea-menu-toggle" type="button" aria-label="Apri menu" aria-expanded="false">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+    </button>
+    <button class="ferea-icon-btn" type="button" aria-label="Cerca" onclick="alert('Ricerca disponibile nella versione e-commerce finale')">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
+    </button>
+  </div>
+  <a class="ferea-mobile-logo-link" href="index.html" aria-label="FÉRÈA Home"><img class="ferea-mobile-logo" src="logo.jpeg" alt="FÉRÈA"></a>
+  <div class="ferea-mobile-right">
+    <button class="ferea-icon-btn" type="button" aria-label="Account" onclick="alert('Area account disponibile nella versione e-commerce finale')">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="3.5"/><path d="M5.5 20c.6-4 3-6 6.5-6s5.9 2 6.5 6"/></svg>
+    </button>
+    <a class="ferea-icon-btn" href="carrello.html" aria-label="Carrello">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8h12l-1 12H7L6 8Z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/></svg>
+    </a>
+  </div>
+</header>
+<div class="ferea-mobile-overlay" aria-hidden="true"></div>
+<aside class="ferea-mobile-drawer" aria-label="Menu mobile">
+  <div class="ferea-drawer-head"><a href="index.html"><img class="ferea-drawer-logo" src="logo.jpeg" alt="FÉRÈA"></a><button class="ferea-drawer-close" type="button" aria-label="Chiudi menu">×</button></div>
+  <nav class="ferea-drawer-nav">
+    <a href="new-in.html">NEW IN</a><a href="abiti.html">ABITI</a><a href="top.html">TOP</a><a href="pantaloni.html">PANTALONI</a><a href="gonne.html">GONNE</a><a href="giacche.html">GIACCHE</a><a href="coordinati.html">COORDINATI</a>
+  </nav>
+  <div class="ferea-drawer-bottom"><a href="chi-siamo.html">CHI SIAMO</a><br><a href="contatti.html">CONTATTI</a><br><a href="spedizioni-resi.html">SPEDIZIONI E RESI</a><br><a href="faq.html">FAQ</a></div>
+</aside>
+<div class='wrap'><a href='index.html'><img class='logo' src='logo.jpeg'></a><h1>IL TUO CARRELLO</h1><div id='cart'></div></div><script>function draw(){let c=JSON.parse(localStorage.getItem('fereaCart')||'null'),el=document.getElementById('cart');if(!c){el.innerHTML='<div class="empty"><h2>IL TUO CARRELLO È VUOTO</h2><p>La tua prossima scelta FÉRÈA ti aspetta.</p><a class="cta" style="margin:30px auto" href="abiti.html">SCOPRI LA COLLEZIONE</a></div>';return}el.innerHTML=`<div class="item"><div class="pic"></div><div><h2>${c.name}</h2><p>Colore: ${c.color}<br>Taglia: ${c.size}</p><div class="qty"><button onclick="q(-1)">−</button> &nbsp;${c.qty}&nbsp; <button onclick="q(1)">+</button></div><p><a href="#" onclick="del()">Rimuovi</a></p></div><div>€ ${(c.price*c.qty).toFixed(2).replace('.',',')}</div></div><div class="total">TOTALE &nbsp; <b>€ ${(c.price*c.qty).toFixed(2).replace('.',',')}</b></div><a class="cta" href="checkout.html">VAI ALLA CASSA</a><a class="secondary" href="abiti.html">CONTINUA LO SHOPPING</a>`}function q(n){let c=JSON.parse(localStorage.getItem('fereaCart'));c.qty+=n;if(c.qty<1)return del();localStorage.setItem('fereaCart',JSON.stringify(c));draw()}function del(){localStorage.removeItem('fereaCart');draw()}draw();</script><script id="ferea-mobile-menu-script">
+(function(){
+  function closeMenu(){document.body.classList.remove('ferea-menu-open');var b=document.querySelector('.ferea-menu-toggle');if(b)b.setAttribute('aria-expanded','false')}
+  function openMenu(){document.body.classList.add('ferea-menu-open');var b=document.querySelector('.ferea-menu-toggle');if(b)b.setAttribute('aria-expanded','true')}
+  document.addEventListener('click',function(e){
+    if(e.target.closest('.ferea-menu-toggle')){document.body.classList.contains('ferea-menu-open')?closeMenu():openMenu();return}
+    if(e.target.closest('.ferea-drawer-close')||e.target.closest('.ferea-mobile-overlay')||e.target.closest('.ferea-drawer-nav a')) closeMenu();
+  });
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeMenu()});
+})();
+</script>
+</body></html>
